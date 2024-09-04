@@ -13,15 +13,12 @@ public class CreateNewTicketFragment implements SimpleController {
     @Override
     public DslSimpleController get() {
         return simpleController(
-                httpSampler("<_/login/","/login/" )
-                        .method(HTTPConstants.GET)
-                        .children(
-                                regexExtractor("csrf_token", "csrfmiddlewaretoken\".*value=\"(.*)\">")
-                                .defaultValue("csrf_ERR")
-                        ),
+                httpSampler("<_/tickets/submit/","/tickets/submit/" )
+                        .method(HTTPConstants.GET),
+
                 httpSampler(">_/tickets/submit/", "/tickets/submit/")
                         .method(HTTPConstants.POST)
-                        .rawParam("csrfmiddlewaretoken", "csrf_token")
+                        .rawParam("csrfmiddlewaretoken", "${csrf_token}")
                         .rawParam("queue", "2")
                         .rawParam("title", "Test tickettt kitiket ${username}")
                         .rawParam("body", "Описание тестового тикета")
@@ -38,7 +35,7 @@ public class CreateNewTicketFragment implements SimpleController {
                         .rawParam("username","${username}")
                         .rawParam("password","${password}")
                         .rawParam("next","/")
-                        .rawParam("csrfmiddlewaretoken", "csrf_token")
+                        .rawParam("csrfmiddlewaretoken", "${csrf_token}")
         );
     }
 }

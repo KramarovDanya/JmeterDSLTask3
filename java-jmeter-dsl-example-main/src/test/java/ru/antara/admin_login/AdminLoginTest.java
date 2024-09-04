@@ -26,6 +26,7 @@ import static ru.antara.common.helpers.HttpHelper.getHttpDefaults;
 import static ru.antara.common.helpers.LogHelper.getTestResultString;
 import static ru.antara.common.helpers.LogHelper.influxDbLog;
 import static ru.antara.common.helpers.VisualizersHelper.*;
+import static ru.antara.common.helpers.HttpHelper.initializePort;
 import static us.abstracta.jmeter.javadsl.JmeterDsl.*;
 
 
@@ -54,6 +55,10 @@ public class AdminLoginTest {
         resultDashboardEnable = Boolean.parseBoolean(properties.getProperty("RESULT_DASHBOARD_ENABLE"));
         debugPostProcessorEnable = Boolean.parseBoolean(properties.getProperty("DEBUG_POSTPROCESSOR_ENABLE"));
         throughputPerMinute = Double.parseDouble(properties.getProperty("THROUGHPUT"));
+
+        int port = Integer.parseInt(properties.getProperty("PORT"));
+        initializePort(port);
+
     }
 
     @SuppressWarnings("unused")

@@ -36,12 +36,18 @@ public class HttpHelper {
 //        return port;
 //    }
 
+    private static int port;
+
+    public static void initializePort(int portValue) {
+        port = portValue;
+    }
+
     public static DslHttpDefaults getHttpDefaults() {
 
         return httpDefaults()
                 .protocol("${__P(PROTOCOL)}")
                 .host("${__P(HELPDESK_HOST)}")
-                .port(23232)
+                .port(port)
                 .encoding(StandardCharsets.UTF_8)
                 .connectionTimeout(Duration.ofSeconds(3))
                 .responseTimeout(Duration.ofSeconds(10));

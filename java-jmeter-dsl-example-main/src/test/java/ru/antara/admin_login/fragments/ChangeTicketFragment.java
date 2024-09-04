@@ -12,7 +12,12 @@ public class ChangeTicketFragment implements SimpleController {
     public DslSimpleController get() {
         return simpleController(
                 httpSampler("<_/", "/")
-                        .method(HTTPConstants.GET),
+                        .method(HTTPConstants.GET)
+                        .children(
+                                regexExtractor("query_encoded","query_encoded\\' value\\=\\'(.*)\\'\\/\\>")
+                                        .matchNumber(1)
+                                        .defaultValue("ERROR_Q_ENCODED")
+                        ),
                 httpSampler("<_/login/","/login/" )
                         .method(HTTPConstants.GET)
                         .children(
@@ -24,12 +29,13 @@ public class ChangeTicketFragment implements SimpleController {
                         .rawParam("username","${username}")
                         .rawParam("password","${password}")
                         .rawParam("next","/")
-                        .rawParam("csrfmiddlewaretoken","csrf_token")
+                        .rawParam("csrfmiddlewaretoken","${csrf_token}")
                         .children(
-                                regexExtractor("query_encoded","query_encoded\\' value\\=\\'(.*)\\'\\/\\>")
-                                        .matchNumber(1)
-                                        .defaultValue("ERROR_Q_ENCODED")),
-                httpSampler("<__/datatables_ticket_list/${some_tocken}","/datatables_ticket_list/eyJmaWx0ZXJpbmciOiB7InN0YXR1c19faW4iOiBbMSwgMl19LCAic29ydGluZyI6ICJjcmVhdGVkIiwgInNlYXJjaF9zdHJpbmciOiAiIiwgInNvcnRyZXZlcnNlIjogZmFsc2V9")
+//                                regexExtractor("query_encoded","query_encoded\\' value\\=\\'(.*)\\'\\/\\>")
+//                                        .matchNumber(1)
+//                                        .defaultValue("ERROR_Q_ENCODED")
+                                        ),
+                httpSampler("<__/datatables_ticket_list/${query_encoded}","/datatables_ticket_list/${query_encoded}")
                         .method(HTTPConstants.GET)
                         .children( regexExtractor("Random_ticket","ticket\":\\s\"(\\d+)").matchNumber(0).defaultValue("ERROR_Num_Ticket")),
                 httpSampler("<__/tickets/","/tickets/")
@@ -50,7 +56,7 @@ public class ChangeTicketFragment implements SimpleController {
                         .rawParam("title","${title_name}")
                         .rawParam("owner","${owner}")
                         .rawParam("priority","${priority}")
-                        .rawParam("csrfmiddlewaretoken","csrf_token"),
+                        .rawParam("csrfmiddlewaretoken","${csrf_token}"),
                 httpSampler("<__/tickets/${Random_ticket}/","/tickets/${Random_ticket}/")
                         .method(HTTPConstants.GET)
         );

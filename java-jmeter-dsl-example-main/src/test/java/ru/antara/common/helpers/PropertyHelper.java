@@ -43,6 +43,7 @@ public class PropertyHelper {
         setProperty("RESULT_TREE_ENABLE", "true", fileProperties, properties);
         setProperty("RESULT_DASHBOARD_ENABLE", "true", fileProperties, properties);
         setProperty("DEBUG_POSTPROCESSOR_ENABLE", "false", fileProperties, properties);
+        setProperty("PORT", "23232", fileProperties, properties);
 
         return properties;
     }

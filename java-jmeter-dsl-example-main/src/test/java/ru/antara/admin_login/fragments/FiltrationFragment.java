@@ -37,7 +37,7 @@ public class FiltrationFragment implements SimpleController {
                         .rawParam("saved_query","${query_encoded}"),
                 httpSampler("<__/save_query/", "/save_query/")
                         .method(HTTPConstants.POST)
-                        .rawParam("csrfmiddlewaretoken", "csrf_token")
+                        .rawParam("csrfmiddlewaretoken", "${csrf_token}")
                         .rawParam("query_encoded", "${query_encoded}")
                         .rawParam("title", "${__RandomString(5,abcdefghijk12345,myRandom)}")
 

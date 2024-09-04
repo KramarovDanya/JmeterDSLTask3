@@ -21,7 +21,7 @@ public class PaginationFragment implements SimpleController {
                         .rawParam("username","${username}")
                         .rawParam("password", "${password}")
                         .rawParam("next","/")
-                        .rawParam("csrfmiddlewaretoken", "csrf_token"),
+                        .rawParam("csrfmiddlewaretoken", "${csrf_token}"),
                 httpSampler("<__/tickets/","/tickets")
                         .method(HTTPConstants.GET),
                 httpSampler("<__/datatables_ticket_list/","/datatables_ticket_list/eyJmaWx0ZXJpbmciOiB7InN0YXR1c19faW4iOiBbMSwgMl19LCAic29ydGluZyI6ICJjcmVhdGVkIiwgInNlYXJjaF9zdHJpbmciOiAiIiwgInNvcnRyZXZlcnNlIjogZmFsc2V9")
