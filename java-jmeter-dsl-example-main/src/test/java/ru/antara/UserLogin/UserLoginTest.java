@@ -39,7 +39,7 @@ public class UserLoginTest {
     boolean debugPostProcessorEnable;
     double throughputPerMinute;
 
-    static final Logger logger = LogManager.getLogger(ChangeTicketTest.class);
+    static final Logger logger = LogManager.getLogger(UserLoginTest.class);
     EmbeddedJmeterEngine embeddedJmeterEngine = new EmbeddedJmeterEngine();
     Properties properties = new Properties();
 

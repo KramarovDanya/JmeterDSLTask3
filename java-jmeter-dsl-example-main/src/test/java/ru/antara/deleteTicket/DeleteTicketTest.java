@@ -39,7 +39,7 @@ public class DeleteTicketTest {
     boolean debugPostProcessorEnable;
     double throughputPerMinute;
 
-    static final Logger logger = LogManager.getLogger(ChangeTicketTest.class);
+    static final Logger logger = LogManager.getLogger(DeleteTicketTest.class);
     EmbeddedJmeterEngine embeddedJmeterEngine = new EmbeddedJmeterEngine();
     Properties properties = new Properties();
 

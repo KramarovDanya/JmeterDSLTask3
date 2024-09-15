@@ -44,7 +44,7 @@ public class ComplexTest {
     boolean debugPostProcessorEnable;
     double throughputPerMinute;
 
-    static final Logger logger = LogManager.getLogger(AdminLoginTest.class);
+    static final Logger logger = LogManager.getLogger(ComplexTest.class);
     EmbeddedJmeterEngine embeddedJmeterEngine = new EmbeddedJmeterEngine();
     Properties properties = new Properties();
 

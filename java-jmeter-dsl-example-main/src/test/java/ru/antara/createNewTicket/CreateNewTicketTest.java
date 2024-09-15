@@ -38,7 +38,7 @@ public class CreateNewTicketTest {
     boolean debugPostProcessorEnable;
     double throughputPerMinute;
 
-    static final Logger logger = LogManager.getLogger(ChangeTicketTest.class);
+    static final Logger logger = LogManager.getLogger(CreateNewTicketTest.class);
     EmbeddedJmeterEngine embeddedJmeterEngine = new EmbeddedJmeterEngine();
     Properties properties = new Properties();
 
