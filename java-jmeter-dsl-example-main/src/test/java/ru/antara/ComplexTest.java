@@ -7,13 +7,19 @@ import org.testng.annotations.Test;
 import ru.antara.admin_login.AdminLoginTest;
 import ru.antara.admin_login.fragments.*;
 import ru.antara.admin_login.helpers.AdminLoginPropertyHelper;
-import ru.antara.admin_login.postprocessors.LoginCheck;
-import ru.antara.admin_login.samplers.AdminLoginThreadGroup;
+import ru.antara.admin_login.samplers.ComplexTestThreadGroup;
+import ru.antara.changeTicket.fragments.ChangeTicketFragment;
+import ru.antara.createNewTicket.fragments.CreateNewTicketFragment;
+import ru.antara.createUser.fragments.CreateUserFragment;
+import ru.antara.deleteTicket.fragments.DeleteTicketFragment;
+import ru.antara.filtration.fragments.FiltrationFragment;
+import ru.antara.logOutUser.fragments.LogOutUserFragment;
+import ru.antara.openTicketTest.fragments.OpenTicketTestFragment;
+import ru.antara.pagination.fragments.PaginationFragment;
 import us.abstracta.jmeter.javadsl.core.TestPlanStats;
 import us.abstracta.jmeter.javadsl.core.engines.EmbeddedJmeterEngine;
 
 import java.io.IOException;
-import java.util.Objects;
 import java.util.Properties;
 import java.util.concurrent.TimeoutException;
 
@@ -78,7 +84,7 @@ public class ComplexTest {
                 getCacheManager(),
                 getHeaders(),
                 getHttpDefaults(),
-                AdminLoginThreadGroup.getThreadGroup("TG_ADMIN_LOGIN", debugEnable)
+                ComplexTestThreadGroup.getThreadGroup("TG_COMPLEX_TEST", debugEnable)
                         .children(
                                 ifController(s -> !debugEnable,
                                         testAction(throughputTimer(throughputPerMinute).perThread())

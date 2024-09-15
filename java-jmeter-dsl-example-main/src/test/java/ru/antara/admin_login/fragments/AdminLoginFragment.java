@@ -28,6 +28,9 @@ public class AdminLoginFragment implements SimpleController {
                         .rawParam("password", "${__P(ADMIN_PASS)}")
                         .rawParam("csrfmiddlewaretoken", "${csrf_token}")
                         .rawParam("next", "/")
+                        .children(regexExtractor("query_encoded","query_encoded\\' value\\=\\'(.*)\\'\\/\\>")
+                                .matchNumber(1)
+                                .defaultValue("ERROR_Q_ENCODED"))
                         .children(
                                 regexExtractor("login_check", "(Logout)")
                                         .defaultValue("login_check_error"),
